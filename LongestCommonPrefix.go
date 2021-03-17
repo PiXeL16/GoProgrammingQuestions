@@ -13,7 +13,7 @@ import (
 func main() {
 
 
-	input := []string{"dog","racecar","car"}
+	input := []string{"flower","flow","flight"}
 
 	longestCommonPrefix := longestCommonPrefix(input)
 
@@ -23,34 +23,29 @@ func main() {
 
 func longestCommonPrefix(strs []string) string {
 
-	longestCommonMap := make(map[string] int)
+	if len(strs) == 0 {
+		return ""
+	}
 
 	if len(strs) == 1  {
 		return strs[0]
 	}
 
-	for x:=0; x< len(strs); x++ {
-
-		for y:=x+1; y<len(strs); y++ {
-
-			prefixes := longestPrefixesOfTwoWords(strs[x], strs[y])
-			if longestCommonMap[prefixes] == 0 {
-				longestCommonMap[prefixes] = 1
-			} else {
-				longestCommonMap[prefixes] = longestCommonMap[prefixes] + 1
-			}
-		}
-
-	}
-
-	value := 0
 	longestCommon := ""
-	for key, element := range longestCommonMap {
-		if element > value {
-			longestCommon = key
-			value = element
-		}
+	prefixes := strs[0]
+	for x:=1; x< len(strs); x++ {
+
+			prefixes := longestPrefixesOfTwoWords(prefixes, strs[x])
+
+			if prefixes != "" {
+					longestCommon = prefixes
+
+			} else {
+				break
+			}
+
 	}
+
 
 	return longestCommon
 }
