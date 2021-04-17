@@ -21,52 +21,53 @@
 
 package main
 
-import (
-	"fmt"
-	"math/big"
-)
-
-func main() {
-
-	number := 30
-	fmt.Println(trailingZeroes(number))
-}
-
-func trailingZeroes(n int) int {
-
-	var fact = new(big.Int)
-	fact.MulRange(1, int64(n))
-
-	trailingCeros := 0
-
-	hasCero := false
-
-	for ok := true; ok; ok = hasCero {
-		if lastDigit(factorial) == 0 {
-			trailingCeros++
-			hasCero = true
-			factorial = removeLastDigit(factorial)
-
-		} else {
-			hasCero = false
-		}
-
-	}
-
-	return trailingCeros
-
-}
-
-func lastDigit(n big.Int) uint64 {
-	var lastDigit big.Int
-	lastDigit.Mod(big.NewInt(n), big.NewInt(10))
-	return lastDigit
-}
-
-func removeLastDigit(n uint64) uint64 {
-	removedDigit := n / 10
-	return removedDigit
-}
+//
+//import (
+//	"fmt"
+//	"math/big"
+//)
+//
+//func main() {
+//
+//	number := 30
+//	fmt.Println(trailingZeroes(number))
+//}
+//
+//func trailingZeroes(n int) int {
+//
+//	var fact = new(big.Int)
+//	fact.MulRange(1, int64(n))
+//
+//	trailingCeros := 0
+//
+//	hasCero := false
+//
+//	for ok := true; ok; ok = hasCero {
+//		if lastDigit(factorial) == 0 {
+//			trailingCeros++
+//			hasCero = true
+//			factorial = removeLastDigit(factorial)
+//
+//		} else {
+//			hasCero = false
+//		}
+//
+//	}
+//
+//	return trailingCeros
+//
+//}
+//
+//func lastDigit(n big.Int) uint64 {
+//	var lastDigit big.Int
+//	lastDigit.Mod(big.NewInt(n), big.NewInt(10))
+//	return lastDigit
+//}
+//
+//func removeLastDigit(n uint64) uint64 {
+//	removedDigit := n / 10
+//	return removedDigit
+//}
 
 //func calculateFactorial(n int) uint64 {
 //
