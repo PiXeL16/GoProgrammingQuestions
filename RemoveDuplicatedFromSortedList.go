@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"GoProgrammingQuestions/utils"
+	"fmt"
+)
 
 //
 //Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
@@ -12,26 +15,22 @@ import "fmt"
  *     Next *ListNode
  * }
  */
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
 
 func main() {
 
 	nodes := buildList()
 
 	// Original
-	printTree(nodes)
+	utils.printList(nodes)
 
 	notDuplicated := deleteDuplicates(nodes)
 
 	fmt.Println("Not Duplicated nodes")
-	printTree(notDuplicated)
+	utils.printList(notDuplicated)
 
 }
 
-func deleteDuplicates(head *ListNode) *ListNode {
+func deleteDuplicates(head *utils.ListNode) *utils.ListNode {
 
 	if head == nil {
 		return nil
@@ -41,7 +40,7 @@ func deleteDuplicates(head *ListNode) *ListNode {
 		return head
 	}
 
-	notDuplicatedListNode := ListNode{
+	notDuplicatedListNode := utils.ListNode{
 		Val: head.Val,
 	}
 
@@ -50,7 +49,7 @@ func deleteDuplicates(head *ListNode) *ListNode {
 	return &notDuplicatedListNode
 }
 
-func deleteDuplicatesRec(node *ListNode, notDuplicatedNode *ListNode) {
+func deleteDuplicatesRec(node *utils.ListNode, notDuplicatedNode *utils.ListNode) {
 
 	if notDuplicatedNode.Val != node.Val {
 		notDuplicatedNode.Next = node
@@ -66,43 +65,4 @@ func deleteDuplicatesRec(node *ListNode, notDuplicatedNode *ListNode) {
 			deleteDuplicatesRec(node.Next, notDuplicatedNode)
 		}
 	}
-}
-
-func buildList() *ListNode {
-
-	exampleArr := []int{1, 2, 3, 4, 5, 5, 6}
-
-	headNode := ListNode{
-		Val: 1,
-	}
-
-	buildTreeRecursively(&headNode, exampleArr, 0)
-
-	return &headNode
-
-}
-
-func buildTreeRecursively(node *ListNode, arr []int, currentPosition int) {
-
-	if currentPosition > len(arr)-1 {
-		return
-	}
-
-	newNode := ListNode{
-		Val: arr[currentPosition],
-	}
-
-	node.Next = &newNode
-
-	buildTreeRecursively(node.Next, arr, currentPosition+1)
-}
-
-func printTree(node *ListNode) {
-
-	fmt.Println(node.Val)
-
-	if node.Next != nil {
-		printTree(node.Next)
-	}
-
 }

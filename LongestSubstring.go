@@ -53,7 +53,7 @@ func lengthOfLongestSubstring(s string) int {
 
 			c := splitedCharacters[y]
 
-			if contains(characters, c) {
+			if containsCharacter(characters, c) {
 				if len(characters) > maxCount {
 					maxCount = len(characters)
 				}
@@ -73,7 +73,7 @@ func lengthOfLongestSubstring(s string) int {
 	return maxCount
 }
 
-func contains(characters []rune, character rune) bool {
+func containsCharacter(characters []rune, character rune) bool {
 
 	for _, c := range characters {
 		if c == character {
